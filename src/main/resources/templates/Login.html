@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="Styles/login_style.css">
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="login-form" th:action="@{/login}" method="post">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" th:value="${username}" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" th:value="${password}" required>
+      </div>
+      <button type="submit">Login</button>
+      <p id="error-message" th:text="${errorMessage}"></p>
+    </form>
+  </div>
+  
+  <!-- You can remove the script tag for now, as we'll handle form submission on the server side -->
+  <!-- <script src="script/login_script.js"></script> -->
+</body>
+</html>

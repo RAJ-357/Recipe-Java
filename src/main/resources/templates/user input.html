@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Tracker</title>
+  <link rel="stylesheet" href="./Styles/userinput_style.css ">
+</head>
+<body>
+  <h1>What do you want to include?</h1>
+  <div class="containerss">
+  <form id="meal-form" th:action="@{/submit}" method="post">
+    <div class="ingredient-group">
+      <input type="checkbox" id="protein" name="protein">
+      <label for="protein">Proteins</label>
+      <input type="number" id="protein-min" name="protein_min" placeholder="min">
+      <input type="number" id="protein-max" name="protein_max" placeholder="max">
+    </div>
+    <div class="ingredient-group">
+      <input type="checkbox" id="carbs" name="carbs">
+      <label for="carbs">Carbs</label>
+      <input type="number" id="carbs-min" name="carbs_min" placeholder="min">
+      <input type="number" id="carbs-max" name="carbs_max" placeholder="max">
+    </div>
+    <div class="ingredient-group">
+      <input type="checkbox" id="sugar" name="sugar">
+      <label for="sugar">Sugar</label>
+      <input type="number" id="sugar-min" name="sugar_min" placeholder="min">
+      <input type="number" id="sugar-max" name="sugar_max" placeholder="max">
+    </div>
+    <div class="ingredient-group">
+      <input type="checkbox" id="fats" name="fats">
+      <label for="fats">Fats</label>
+      <input type="number" id="fats-min" name="fats_min" placeholder="min">
+      <input type="number" id="fats-max" name="fats_max" placeholder="max">
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+  <script src="./script/userinput_script.js"></script>
+</body>
+</html>
