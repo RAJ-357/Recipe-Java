@@ -1,0 +1,12 @@
+.ingredient-input {
+  text-align: center; /* Center the content within the div */
+  margin: 0 auto;  /* Horizontally center the div */
+  margin: 80px 500px;
+  padding: 40px;
+  border: 3px dashed black;
+}
+
+.ingredient-input label {
+  display: block;  /* Make the label display on a new line */
+  margin-bottom: 5px;  /* Add some space between label and textarea */
+}

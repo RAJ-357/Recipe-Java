@@ -1,0 +1,76 @@
+header {
+    background-color: rgb(73, 64, 22);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: x-large;
+    color: antiquewhite;
+    padding: 10px 20px;
+  }
+  nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .nav-start {
+    display: flex;
+    align-items: center;
+  }
+  .nav-start img {
+    width: 50px; /* Adjust logo size */
+    margin-right: 10px; /* Spacing between logo and brand name */
+  }
+  .brand-name {
+    font-family: serif; /* Choose a classy font */
+    font-size: 18px;
+  }
+  .nav-end {
+    position: relative; /* Needed for dropdown positioning */
+  }
+  .nav-end i {
+    font-size: 25px;
+    margin-left: 15px; /* Spacing between icons */
+    color: antiquewhite; /* Change icon color */
+  }
+  .nav-end i:hover {
+    color: #666; /* Subtle hover effect */
+  }
+  .dropdown {
+    position: absolute; /* Position the dropdown menu */
+    top: 100%; /* Display below the user icon */
+    left: 0;
+    background-color: #fff;
+    display: none; /* Initially hide the dropdown */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+  .dropdown a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    display: block;
+  }
+  .dropdown a:hover {
+    background-color: #f1f1f1;
+  }
+  .nav-end:hover .dropdown {
+    display: block;
+    /* z-index: 1; */
+  }
+
+
+  .text-overlay {
+    position: absolute;
+    top: 80px; /* Adjust as needed */
+    left: 180px; /* Adjust as needed */
+    color: #ceebdd;
+  }
+  
+  .text-overlay h1 {
+    font-size: 5em; /* Adjust the font size as needed */
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 0;
+  }
+  
+  .text-overlay > button {
+    margin-left: 585px;
+    margin-top: 500px;
+  }

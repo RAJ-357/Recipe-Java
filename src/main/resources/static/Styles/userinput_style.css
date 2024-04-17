@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 2rem;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .ingredient-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .ingredient-group input[type="number"] {
+    width: 4rem;
+    padding: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .containerss{
+    margin: 80px 400px;
+    padding: 60px;
+    border: 3px dashed black;
+  }

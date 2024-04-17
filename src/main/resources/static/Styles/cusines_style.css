@@ -1,0 +1,45 @@
+body > main{
+    font-family: sans-serif;
+    margin: 0;
+    display: flex; /* Center the container horizontally */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure content fills viewport height */
+    background-color: beige;
+  }
+  
+  .button-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-gap: 20px;
+    width: 60%; /* Adjust container width */
+    margin: 0 auto;
+    padding-bottom: 60px;
+    font-size: large;
+  }
+  
+  .box {
+    border-radius: 5px;
+    border: none;
+    padding: 0;
+    margin: 10px;
+    /* background-color: black; */
+    /* color: rgb(237, 91, 13); */
+    width: 100%;
+    height: 200px; /* Adjust button height */
+    background-color: #da9696;
+    box-shadow: 10px 20px 50px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .box img {
+    width: 100%;
+    height: 100%; /* Ensure image covers entire button */
+    object-fit: cover; /* Maintain aspect ratio and scale to fit */
+  }
+  
+  .box:hover {
+    transform: scale(1.02); /* Slight hover effect */
+  }
+  
