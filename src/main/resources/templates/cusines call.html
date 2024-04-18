@@ -30,10 +30,10 @@
 
   <div class="ingredient-input">
     <label for="ingredients">Enter Ingredients:</label>
-    <textarea id="ingredients" name="ingredients" rows="5" cols="50" th:field="${ingredients}"></textarea>
+    <textarea id="ingredients" name="ingredients" rows="5" cols="50"></textarea>
     <br><br>
     <label for="ingredients">Not Required Ingredients:</label>
-    <textarea id="not-required-ingredients" name="notRequiredIngredients" rows="5" cols="50" th:field="${notRequiredIngredients}"></textarea> <br>
+    <textarea id="not-required-ingredients" name="notRequiredIngredients" rows="5" cols="50"></textarea> <br>
     <button class="btn btn-primary" type="submit" th:onclick="'window.location.href=\'' + @{/user-input} + '\''">Button</button>
   </div>
   

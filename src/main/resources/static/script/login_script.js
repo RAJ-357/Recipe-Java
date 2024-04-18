@@ -9,7 +9,7 @@ document.getElementById("login-form").addEventListener("submit", function(event)
     if (username === "a" && password === "a") {
       // Successful login
       alert("Login successful!");
-      window.location.href = "Home.html";
+      window.location.href = "home";
       // Redirect to another page or perform any desired action
     } else {
       // Failed login
