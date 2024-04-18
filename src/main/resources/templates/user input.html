@@ -9,7 +9,7 @@
 <body>
   <h1>What do you want to include?</h1>
   <div class="containerss">
-  <form id="meal-form" th:action="@{/submit}" method="post">
+  <form id="meal-form" th:action="@{/handleRecipeRequest}" method="post">
     <div class="ingredient-group">
       <input type="checkbox" id="protein" name="protein">
       <label for="protein">Proteins</label>
@@ -34,9 +34,75 @@
       <input type="number" id="fats-min" name="fats_min" placeholder="min">
       <input type="number" id="fats-max" name="fats_max" placeholder="max">
     </div>
-    <button type="submit">Submit</button>
+    <button type="button" id="save-button" th:onclick="saveAndRedirect()">Save</button>
   </form>
 </div>
-  <script src="./script/userinput_script.js"></script>
+<script>
+  async function saveAndRedirect() {
+    var selectedCuisine = localStorage.getItem('selectedCuisine');
+    var requiredIngredients = localStorage.getItem('requiredIngredients');
+    var nonRequiredIngredients = localStorage.getItem('nonRequiredIngredients');
+    var filledValues = {};
+
+  // Iterate through the checkboxes and add checked values to filledValues object
+  document.querySelectorAll('.ingredient-group input[type="checkbox"]').forEach(checkbox => {
+    if (checkbox.checked) {
+      var fieldName = checkbox.id; // Get the ID of the checkbox
+      var minInput = document.getElementById(`${fieldName}-min`);
+      var maxInput = document.getElementById(`${fieldName}-max`);
+
+      // Only add to filledValues if min and max inputs are filled
+      if (minInput.value && maxInput.value) {
+        filledValues[fieldName] = {
+          min: minInput.value,
+          max: maxInput.value
+        };
+      }
+    }
+  });
+
+  // localStorage.setItem('filledValues',filledValues);
+
+    // Combine all the data into a single object
+    var requestData = {
+      selectedCuisine: selectedCuisine,
+      requiredIngredients: requiredIngredients,
+      nonRequiredIngredients: nonRequiredIngredients,
+      filledValues: filledValues
+    };
+
+    try {
+      // Make an API request to the controller endpoint
+      const response = await fetch('/handleRecipeRequest', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestData)
+      });
+
+      if (response.ok) {
+        // If the request is successful, parse the response JSON
+        const data = await response.json();
+        console.log(data.results);
+
+        // Save the response object to localStorage
+        localStorage.setItem('recipesResponse', JSON.stringify(data));
+
+        // Redirect to the next page
+        window.location.href = '/allrecipes';
+      } else {
+        // Log the URL to the console in case of error
+        const url = await response.text();
+        console.error('API request failed:', url);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+</script>
+
+  <!-- <script src="./script/userinput_script.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

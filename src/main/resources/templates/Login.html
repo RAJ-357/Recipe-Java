@@ -22,8 +22,19 @@
       <p id="error-message" th:text="${errorMessage}"></p>
     </form>
   </div>
-  
-  <!-- You can remove the script tag for now, as we'll handle form submission on the server side -->
-  <script src="script/login_script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var loginForm = document.getElementById('login-form');
+      loginForm.addEventListener('submit', function(event) {
+        // Get the username input value
+        var usernameInput = document.getElementById('username');
+        var username = usernameInput.value.trim();
+        
+        localStorage.clear();
+        // Store the username in local storage
+        localStorage.setItem('username', username);
+      });
+    });
+  </script>
 </body>
 </html>
