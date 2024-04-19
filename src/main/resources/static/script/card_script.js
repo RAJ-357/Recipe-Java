@@ -31,13 +31,17 @@ const renderRecipes = async (recipes) => {
     return; // Exit the function early if no recipes are found
   }
 
-  recipes.forEach(recipe => {
+  recipes.forEach(async recipe => {
     const card = document.createElement('div');
     card.classList.add('recipe-card');
 
     const image = document.createElement('img');
     image.src = recipe.image;
     image.alt = 'Recipe Image';
+
+    const id = document.createElement('span');
+    id.textContent = `ID: ${recipe.id}`;
+    id.classList.add('recipe-id');
 
     const title = document.createElement('h3');
     title.textContent = recipe.title;
@@ -49,13 +53,19 @@ const renderRecipes = async (recipes) => {
       nutrientsList.appendChild(nutrientItem);
     });
 
+    card.addEventListener('click', () => {
+        localStorage.setItem('recipeId', recipe.id);
+    });
+
     card.appendChild(image);
     card.appendChild(title);
+    card.appendChild(id);
     card.appendChild(nutrientsList);
 
     recipeContainer.appendChild(card);
   });
 };
+
 
 (async () => {
   const recipes = await fetchRecipes();

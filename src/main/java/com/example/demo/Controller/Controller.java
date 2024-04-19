@@ -112,35 +112,36 @@ public class Controller {
         }
     }
 
-    // @PostMapping("/getRecipeDetails")
-    // public ResponseEntity<String> handleRecipeDetails(@RequestParam long recipeId) {
+    @PostMapping("/getRecipeDetails")
+    public ResponseEntity<String> handleRecipeDetails(@RequestBody Map<String, Object> requestBody) {
         
-    //     String apiKey = "b64a702ee37e49169362fdd350a369da";
+        String apiKey = "b64a702ee37e49169362fdd350a369da";
+        String recipeId = (String) requestBody.get("recipeId");
 
-    //     // Build the Spoonacular API request URL with the API key
-    //     String url = "https://api.spoonacular.com/recipes/" + recipeId + "/information";
-    //     StringBuilder queryParams = new StringBuilder("?apiKey=").append(apiKey);
+        // Build the Spoonacular API request URL with the API key
+        String url = "https://api.spoonacular.com/recipes/" + recipeId + "/information";
+        StringBuilder queryParams = new StringBuilder("?apiKey=").append(apiKey);
 
 
-    //     url += queryParams.toString();
+        url += queryParams.toString();
 
-    //     // Make the API request
-    //     RestTemplate restTemplate = new RestTemplate();
-    //     ResponseEntity<String> response;
-    //     try {
-    //         response = restTemplate.getForEntity(url, String.class);
-    //         // Handle the response
-    //         if (response.getStatusCode() == HttpStatus.OK) {
-    //             return response;
-    //         } else {
-    //             // Return URL in case of error
-    //             return new ResponseEntity<>(url, HttpStatus.INTERNAL_SERVER_ERROR);
-    //         }
-    //     } catch (Exception e) {
-    //         // Return URL in case of exception
-    //         return new ResponseEntity<>(url, HttpStatus.INTERNAL_SERVER_ERROR);
-    //     }
-    // }
+        // Make the API request
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response;
+        try {
+            response = restTemplate.getForEntity(url, String.class);
+            // Handle the response
+            if (response.getStatusCode() == HttpStatus.OK) {
+                return response;
+            } else {
+                // Return URL in case of error
+                return new ResponseEntity<>(url, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            // Return URL in case of exception
+            return new ResponseEntity<>(url, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     
 
 }

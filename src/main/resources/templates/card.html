@@ -8,7 +8,7 @@
 </head>
 <body>
   <h1>Our Recipes</h1>
-  <div class="recipes-container">
+  <div class="recipes-container" onclick="getRecipeDetails()">
     <th:block th:each="recipe : ${recipes}">
       <div class="recipe-card">
           <img th:src="${recipe.image}" alt="Recipe Image">
@@ -21,6 +21,44 @@
     </th:block>
   </div>
 
+  <script>
+    async function getRecipeDetails() { 
+      try {
+        recipeId = localStorage.getItem('recipeId');
+  
+        var requestBody = {
+          recipeId: recipeId 
+        };
+  
+        const response = await fetch('/getRecipeDetails', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(requestBody)
+        });
+  
+        if (response.ok) {
+          // If the request is successful, parse the response JSON
+          const data = await response.json();
+          console.log(data);
+  
+          // Save the response object to localStorage
+          localStorage.setItem('recipeDetails', JSON.stringify(data));
+  
+          // Redirect to recipe details page
+          window.location.href = '/recipe-details';
+        } else {
+          // Log the URL to the console in case of error
+          const url = await response.text();
+          console.error('API request failed:', url);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+  </script>  
+    
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="./script/card_script.js"></script>
 </body>
