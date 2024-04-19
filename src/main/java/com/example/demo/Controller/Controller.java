@@ -144,4 +144,17 @@ public class Controller {
     }
     
 
+    @PostMapping("/saveRecipe")
+    public ResponseEntity<String> saveRecipe(@RequestBody Map<String, String> request) {
+        String recipeId = request.get("recipeId");
+        String username = request.get("username");
+        
+        // Save the recipe ID and username to the database
+        String sql = "INSERT INTO savedrecipes (recipe_id, username) VALUES (?, ?)";
+        jdbcTemplate.update(sql, Long.parseLong(recipeId), username);
+
+        // Assuming the save operation was successful, return a success message
+        return ResponseEntity.ok("Recipe ID and username saved successfully");
+    }
+
 }

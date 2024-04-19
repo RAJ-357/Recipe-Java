@@ -19,7 +19,36 @@
             </div>
         </div>
     </div>
-
+    <center>
+    <button id= "saveRecipeBtn" style=" margin: 0px; padding: 10px; border-radius: 10px;  ; background-color: yellowgreen; color: black;"><b>Save Recipe</b></button>
+    </center>
+    <script>
+        document.getElementById('saveRecipeBtn').addEventListener('click', function() {
+            // Retrieve the recipe ID and username from local storage
+            const recipeId = localStorage.getItem('recipeId');
+            const username = localStorage.getItem('username');
+    
+            // Make an AJAX request to save the recipe ID and username to the database
+            fetch('/saveRecipe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ recipeId: recipeId, username: username })
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Recipe ID and username saved successfully');
+                } else {
+                    console.error('Failed to save recipe ID and username');
+                }
+            })
+            .catch(error => {
+                console.error('Error saving recipe ID and username:', error);
+            });
+        });
+    </script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="./script/details_script.js"></script>
 </body>
